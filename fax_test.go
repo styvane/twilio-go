@@ -7,6 +7,7 @@ import (
 )
 
 func TestGetFax(t *testing.T) {
+	t.Fail()
 	t.Parallel()
 	client, server := getServer(faxGetResponse)
 	defer server.Close()
