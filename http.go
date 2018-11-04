@@ -59,15 +59,20 @@ var VideoBaseUrl = "https://video.twilio.com"
 
 const VideoVersion = "v1"
 
+var TaskRouterBaseUrl = "https://taskrouter.twilio.com"
+
+const TaskRouterVersion = "v1"
+
 type Client struct {
 	*rest.Client
-	Monitor  *Client
-	Pricing  *Client
-	Fax      *Client
-	Wireless *Client
-	Notify   *Client
-	Lookup   *Client
-	Video    *Client
+	Monitor    *Client
+	Pricing    *Client
+	Fax        *Client
+	Wireless   *Client
+	Notify     *Client
+	Lookup     *Client
+	Video      *Client
+	TaskRouter *Client
 
 	// FullPath takes a path part (e.g. "Messages") and
 	// returns the full API path, including the version (e.g.
@@ -118,6 +123,8 @@ type Client struct {
 	// NewVideoClient initializes these services
 	Rooms           *RoomService
 	VideoRecordings *VideoRecordingService
+
+	TaskRouterActivity *TaskRouterActivityService
 }
 
 const defaultTimeout = 30*time.Second + 500*time.Millisecond
@@ -223,6 +230,21 @@ func NewMonitorClient(accountSid string, authToken string, httpClient *http.Clie
 	return c
 }
 
+func NewTaskRouterClient(accountSid string, authToken string, httpClient *http.Client) *Client {
+	if httpClient == nil {
+		httpClient = &http.Client{Timeout: defaultTimeout}
+	}
+
+	c := newNewClient(accountSid, authToken, TaskRouterBaseUrl, httpClient)
+	c.FullPath = func(pathPart string) string {
+		return "/" + c.APIVersion + "/Workspaces/WS8b69875da105e635f055ab29ac039380/" + pathPart
+	}
+	c.APIVersion = TaskRouterVersion
+	c.TaskRouterActivity = &TaskRouterActivityService{client: c}
+
+	return c
+}
+
 // NewPricingClient returns a new Client to use the pricing API
 func NewPricingClient(accountSid string, authToken string, httpClient *http.Client) *Client {
 	c := newNewClient(accountSid, authToken, PricingBaseURL, httpClient)
@@ -289,6 +311,7 @@ func NewClient(accountSid string, authToken string, httpClient *http.Client) *Cl
 	c.Notify = NewNotifyClient(accountSid, authToken, httpClient)
 	c.Lookup = NewLookupClient(accountSid, authToken, httpClient)
 	c.Video = NewVideoClient(accountSid, authToken, httpClient)
+	c.TaskRouter = NewTaskRouterClient(accountSid, authToken, httpClient)
 
 	c.Accounts = &AccountService{client: c}
 	c.Applications = &ApplicationService{client: c}
