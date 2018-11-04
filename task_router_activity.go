@@ -23,15 +23,15 @@ type Activity struct {
 }
 
 func (r *TaskRouterActivityService) Get(ctx context.Context, sid string) (*Activity, error) {
-	recording := new(Activity)
-	err := r.client.GetResource(ctx, activityPathPart, sid, recording)
-	return recording, err
+	activity := new(Activity)
+	err := r.client.GetResource(ctx, activityPathPart, sid, activity)
+	return activity, err
 }
 
 func (r *TaskRouterActivityService) Create(ctx context.Context, data url.Values) (*Activity, error) {
-	room := new(Activity)
-	err := r.client.CreateResource(ctx, activityPathPart, data, room)
-	return room, err
+	activity := new(Activity)
+	err := r.client.CreateResource(ctx, activityPathPart, data, activity)
+	return activity, err
 }
 
 func (r *TaskRouterActivityService) Delete(ctx context.Context, sid string) error {
@@ -39,7 +39,7 @@ func (r *TaskRouterActivityService) Delete(ctx context.Context, sid string) erro
 }
 
 func (ipn *TaskRouterActivityService) Update(ctx context.Context, sid string, data url.Values) (*Activity, error) {
-	number := new(Activity)
-	err := ipn.client.UpdateResource(ctx, activityPathPart, sid, data, number)
-	return number, err
+	activity := new(Activity)
+	err := ipn.client.UpdateResource(ctx, activityPathPart, sid, data, activity)
+	return activity, err
 }
