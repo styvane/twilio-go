@@ -124,7 +124,7 @@ type Client struct {
 	Rooms           *RoomService
 	VideoRecordings *VideoRecordingService
 
-	TaskRouterActivity *TaskRouterActivityService
+	Activities         *TaskRouterActivityService
 }
 
 const defaultTimeout = 30*time.Second + 500*time.Millisecond
@@ -240,7 +240,7 @@ func NewTaskRouterClient(accountSid string, authToken string, httpClient *http.C
 		return "/" + c.APIVersion + "/Workspaces/WS8b69875da105e635f055ab29ac039380/" + pathPart
 	}
 	c.APIVersion = TaskRouterVersion
-	c.TaskRouterActivity = &TaskRouterActivityService{client: c}
+	c.Activities = &TaskRouterActivityService{client: c}
 
 	return c
 }
