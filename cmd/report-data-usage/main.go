@@ -35,9 +35,9 @@ import (
 	"sync"
 	"time"
 
-	types "github.com/kevinburke/go-types"
-	twilio "github.com/kevinburke/twilio-go"
-	"github.com/kevinburke/twilio-go/datausage"
+	types "github.com/styvane/go-types"
+	twilio "github.com/styvane/twilio-go"
+	"github.com/styvane/twilio-go/datausage"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -93,7 +93,7 @@ func main() {
 	// we get them above, which would give us a head start on fetching the data
 	//
 	// we could also guard data fetches with a semaphore:
-	// github.com/kevinburke/semaphore
+	// github.com/styvane/semaphore
 	var mu sync.Mutex
 	ctx, cancel := context.WithTimeout(context.Background(), 31*time.Second)
 	defer cancel()

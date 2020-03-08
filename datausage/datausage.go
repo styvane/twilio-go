@@ -9,8 +9,8 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	types "github.com/kevinburke/go-types"
-	twilio "github.com/kevinburke/twilio-go"
+	types "github.com/styvane/go-types"
+	twilio "github.com/styvane/twilio-go"
 )
 
 // GetUsage gets usage for the given sim, starting at start and ending at end.

@@ -51,11 +51,11 @@ import (
 	"sync"
 	"time"
 
-	types "github.com/kevinburke/go-types"
-	"github.com/kevinburke/handlers"
-	"github.com/kevinburke/rest"
-	twilio "github.com/kevinburke/twilio-go"
-	"github.com/kevinburke/twilio-go/datausage"
+	types "github.com/styvane/go-types"
+	"github.com/styvane/handlers"
+	"github.com/styvane/rest"
+	twilio "github.com/styvane/twilio-go"
+	"github.com/styvane/twilio-go/datausage"
 	"golang.org/x/sync/errgroup"
 )
 

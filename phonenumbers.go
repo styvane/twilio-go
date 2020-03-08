@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/url"
 
-	types "github.com/kevinburke/go-types"
+	types "github.com/styvane/go-types"
 )
 
 const numbersPathPart = "IncomingPhoneNumbers"

@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"time"
 
-	types "github.com/kevinburke/go-types"
+	types "github.com/styvane/go-types"
 )
 
 const conferencePathPart = "Conferences"

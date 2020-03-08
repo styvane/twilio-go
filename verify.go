@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/kevinburke/go-types"
+	"github.com/styvane/go-types"
 )
 
 const servicesPathPart = "Services"
